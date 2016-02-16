@@ -1,0 +1,40 @@
+# document search service
+docsearch:
+  # image: docker.qsensei.com/docsearch:1
+  image: ubuntu:14.04
+  command: bash -c "while true; do sleep 5; done"
+  links:
+    - fuse
+  volumes:
+    - $BASE_DIR:/docs:ro
+  environment:
+    # needs to be prepended to document-path in url attribute
+    BASE_URL: /static/docs
+# the Fuse Core container
+fuse:
+  image: docker.qsensei.com/fuse-free:latest
+  # automatically setup Fuse with pkg on start - needs testing and review
+  command: /fuse/bin/fusectl run -p /fuse/ext/pkg
+  volumes:
+    # nginx proxy config to forward requests for /static/docs to fileserver
+    - ./nginx.d:/fuse/ext/nginx.d:ro
+    # the docsearch pkg with the schema
+    - ./pkg:/fuse/ext/pkg
+  volumes_from:
+    - data
+  links:
+    - fileserver
+  ports:
+    - 8000:8000
+  environment:
+    # enable services interface in managment frontend
+    FUSE_OPTS: docsearch,foo,bar
+# file server for documents
+fileserver:
+  image: nginx:1.9.11
+  volumes:
+    - $BASE_DIR:/usr/share/nginx/html:ro
+# the data container for fuse
+data:
+  image: docker.qsensei.com/fuse-free:latest
+  command: echo "Fuse data container"
