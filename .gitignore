@@ -1,1 +1,4 @@
 /.vagrant
+/eggs
+/.installed.cfg
+/bin/
