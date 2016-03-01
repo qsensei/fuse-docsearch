@@ -1,26 +1,28 @@
 {
   "types": [
     {
-      "id": "person",
-      "label": "Person",
-      "fields": [
-        {"name": "name", "type": "str", "index": true},
-        {"name": "age", "type": "int"},
-        {"name": "email", "type": "str"},
-        {"name": "address", "type": "str"},
-        {"name": "tags", "multi": true, "type": "str"}
+      "id": "document",
+      "label": "Document",
+      "attributes": [
+        {"name": "content"},
+        {"name": "mimetype"},
+        {"name": "location"},
+        {"name": "url"},
+        {"name": "filesize", "type": "int"},
+        {"name": "date_created", "type": "datetime"},
+        {"name": "date_modified", "type": "datetime"},
+        {"name": "keywords", "extractions": {"keywords": [
+          "test",
+          "document"
+          ]}
+         }
       ]
     },
     {
-      "id": "doc",
-      "label": "Document",
-      "fields": [
-        {"name": "title", "type": "str"},
-        {"name": "content", "type": "str"},
-        {"name": "size", "type": "int"},
-        {"name": "author", "type": "relation"},
-        {"name": "date", "type": "datetime"},
-        {"name": "tags", "multi": true, "type": "str"}
+      "id": "folder",
+      "attributes": [
+        {"name": "files", "multi": true},
+        {"name": "dirs", "multi": true}
       ]
     }
   ]

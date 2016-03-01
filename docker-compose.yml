@@ -1,10 +1,9 @@
 # document search service
 docsearch:
-  # image: docker.qsensei.com/docsearch:1
-  image: ubuntu:14.04
-  command: bash -c "while true; do sleep 5; done"
+  image: docservices
   links:
     - fuse
+    - docs-server
   volumes:
     - $BASE_DIR:/docs:ro
   environment:
@@ -23,14 +22,14 @@ fuse:
   volumes_from:
     - data
   links:
-    - fileserver
+    - docs-server
   ports:
     - 8000:8000
   environment:
     # enable services interface in managment frontend
-    FUSE_OPTS: docsearch,foo,bar
+    FUSE_OPTS: docsearch
 # file server for documents
-fileserver:
+docs-server:
   image: nginx:1.9.11
   volumes:
     - $BASE_DIR:/usr/share/nginx/html:ro
