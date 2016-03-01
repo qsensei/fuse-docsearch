@@ -1,31 +1,37 @@
+router:
+  image: nginx:1.9.11
+  links:
+    - fileserver
+    - fuse
+    - docservices
+  ports:
+    - "80:80"
+  volumes:
+    - ./nginx.d:/etc/nginx/conf.d:ro
 # document search service
-docsearch:
-  # image: docker.qsensei.com/docsearch:1
-  image: ubuntu:14.04
-  command: bash -c "while true; do sleep 5; done"
+docservices:
+  image: docker.qsensei.com/dev/docservices:latest
   links:
     - fuse
+    - fileserver
   volumes:
-    - $BASE_DIR:/docs:ro
+    - ./docs:/docs:ro
   environment:
-    # needs to be prepended to document-path in url attribute
-    BASE_URL: /static/docs
+    APP_DOCS_EXTERNAL_URL: /static/docs
+    APP_DOCS_URL: http://fileserver
+    APP_FUSE_URL: http://fuse:8000/api
+  log_driver: json-file
+  log_opt:
+    max-size: "50m"
+    max-file: "5"
 # the Fuse Core container
 fuse:
-  image: docker.qsensei.com/fuse-free:latest
+  image: docker.qsensei.com/dev/fuse-free:latest
   # automatically setup Fuse with pkg on start - needs testing and review
   command: /fuse/bin/fusectl run -p /fuse/ext/pkg
   volumes:
-    # nginx proxy config to forward requests for /static/docs to fileserver
-    - ./nginx.d:/fuse/ext/nginx.d:ro
     # the docsearch pkg with the schema
     - ./pkg:/fuse/ext/pkg
-  volumes_from:
-    - data
-  links:
-    - fileserver
-  ports:
-    - 8000:8000
   environment:
     # enable services interface in managment frontend
     FUSE_OPTS: docsearch,foo,bar
@@ -33,8 +39,4 @@ fuse:
 fileserver:
   image: nginx:1.9.11
   volumes:
-    - $BASE_DIR:/usr/share/nginx/html:ro
-# the data container for fuse
-data:
-  image: docker.qsensei.com/fuse-free:latest
-  command: echo "Fuse data container"
+    - ./docs:/usr/share/nginx/html:ro
