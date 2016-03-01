@@ -16,8 +16,5 @@ Vagrant.configure(2) do |config|
     [ ! -f /usr/bin/docker ] && \
       curl -fsSL https://get.docker.com/ | sh && \
       usermod -aG docker vagrant
-
-    apt-get update
-    apt-get install python-pip -y && pip install docker-compose
   SHELL
 end
