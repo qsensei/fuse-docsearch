@@ -1,5 +1,14 @@
 {
-  "components": [],
+  "components": [
+	{"component": "qc.index.transform:tokens",
+	 "name": "tokenize",
+	 "type": "transformer"
+	},
+	{"component": "qc.index.transform:ISODate",
+	 "name": "date",
+	 "type": "transformer"
+	}
+],
   "defaults": {
     "results_sorting": [{"index": "filename", "direction": "asc"}],
     "limit": 5,
@@ -7,8 +16,13 @@
   },
   "indexes": [
     {"name": "tx", "type": "text", "label": "Full Text"},
-    {"name": "filename"}
+    {"name": "filename"},
+    {"name": "keyword"},
+    {"name": "created"}
   ],
   "sources": [
+	{"index": "tx", "fuse:type": "document", "attribute": "content", "transformers":["tokenize"]},
+        {"index": "keyword", "fuse:type": "document", "attribute": "keywords"},
+	{"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]}
   ]
 }
