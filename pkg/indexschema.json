@@ -1,13 +1,7 @@
 {
   "components": [
-	{"component": "qc.index.transform:tokens",
-	 "name": "tokenize",
-	 "type": "transformer"
-	},
-	{"component": "qc.index.transform:ISODate",
-	 "name": "date",
-	 "type": "transformer"
-	}
+	{"name": "location", "component": "my:location", "type": "transformer"},
+	{"name": "date", "component": "qc.index.transform:ISODate", "type": "transformer"}
 ],
   "defaults": {
     "results_sorting": [{"index": "filename", "direction": "asc"}],
@@ -18,11 +12,17 @@
     {"name": "tx", "type": "text", "label": "Full Text"},
     {"name": "filename"},
     {"name": "keyword"},
-    {"name": "created"}
+    {"name": "created"},
+    {"name": "modified"},
+    {"name": "path"},
+    {"name": "size"}
   ],
   "sources": [
-	{"index": "tx", "fuse:type": "document", "attribute": "content", "transformers":["tokenize"]},
+	{"index": "tx", "fuse:type": "document", "attribute": "content"},
         {"index": "keyword", "fuse:type": "document", "attribute": "keywords"},
-	{"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]}
+	{"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]},
+	{"index": "modified", "fuse:type": "document", "attribute": "date_modified", "transformers": ["date"]},
+        {"index": "path", "fuse:type": "document", "attribute": "location", "transformers": ["location"]},
+	{"index": "size", "fuse:type": "document", "attribute": "filesize"}
   ]
 }
