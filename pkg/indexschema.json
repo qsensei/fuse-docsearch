@@ -4,7 +4,7 @@
         {"name": "date", "component": "qc.index.transform:ISODate", "type": "transformer"}
     ],
     "defaults": {
-        "results_sorting": [{"index": "filename", "direction": "asc"}],
+        "results_sorting": [{"index": "modified", "direction": "desc"}],
         "limit": 5,
         "fulltext_index": "tx"
     },
