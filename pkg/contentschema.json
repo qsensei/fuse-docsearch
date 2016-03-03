@@ -4,6 +4,7 @@
       "id": "document",
       "label": "Document",
       "attributes": [
+        {"name": "name"},
         {"name": "content"},
         {"name": "mimetype"},
         {"name": "location"},
