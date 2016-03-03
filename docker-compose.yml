@@ -14,7 +14,7 @@ docservices:
     - fuse
     - fileserver
   volumes:
-    - $BASE_DIR:/docs:ro
+    - $DOCS_DIR:/docs:ro
   environment:
     APP_DOCS_EXTERNAL_URL: /static/docs
     APP_DOCS_URL: http://fileserver
@@ -36,4 +36,4 @@ fuse:
 fileserver:
   image: nginx:1.9.11
   volumes:
-    - $BASE_DIR:/usr/share/nginx/html:ro
+    - $DOCS_DIR:/usr/share/nginx/html:ro
