@@ -1,29 +1,29 @@
 {
-  "components": [
-	{"name": "location", "component": "my:location", "type": "transformer"},
-	{"name": "date", "component": "qc.index.transform:ISODate", "type": "transformer"}
-],
-  "defaults": {
-    "results_sorting": [{"index": "filename", "direction": "asc"}],
-    "limit": 5,
-    "fulltext_index": "tx"
-  },
-  "indexes": [
-    {"name": "tx", "type": "text", "label": "Full Text"},
-    {"name": "mimetype", "label": "File Type"},
-    {"name": "keyword"},
-    {"name": "created"},
-    {"name": "modified"},
-    {"name": "path"},
-    {"name": "size"}
-  ],
-  "sources": [
-	{"index": "tx", "fuse:type": "document", "attribute": "content"},
+    "components": [
+        {"name": "location", "component": "my:location", "type": "transformer"},
+        {"name": "date", "component": "qc.index.transform:ISODate", "type": "transformer"}
+    ],
+    "defaults": {
+        "results_sorting": [{"index": "filename", "direction": "asc"}],
+        "limit": 5,
+        "fulltext_index": "tx"
+    },
+    "indexes": [
+        {"name": "tx", "type": "text", "label": "Full Text"},
+        {"name": "mimetype", "label": "File Type"},
+        {"name": "created"},
+        {"name": "modified"},
+        {"name": "path"},
+        {"name": "size"},
+        {"name": "company"}
+    ],
+    "sources": [
+        {"index": "tx", "fuse:type": "document", "attribute": "content"},
         {"index": "mimetype", "fuse:type": "document", "attribute": "mimetype"},
-        {"index": "keyword", "fuse:type": "document", "attribute": "keywords"},
-	{"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]},
-	{"index": "modified", "fuse:type": "document", "attribute": "date_modified", "transformers": ["date"]},
+        {"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]},
+        {"index": "modified", "fuse:type": "document", "attribute": "date_modified", "transformers": ["date"]},
         {"index": "path", "fuse:type": "document", "attribute": "location", "transformers": ["location"]},
-	{"index": "size", "fuse:type": "document", "attribute": "filesize"}
-  ]
+        {"index": "size", "fuse:type": "document", "attribute": "filesize"},
+        {"index": "company", "fuse:type": "document", "attribute": "ext:companies"}
+    ]
 }

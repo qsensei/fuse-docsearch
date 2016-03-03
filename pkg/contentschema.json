@@ -13,11 +13,7 @@
         {"name": "sha1"},
         {"name": "date_created", "type": "datetime"},
         {"name": "date_modified", "type": "datetime"},
-        {"name": "keywords", "extractions": {"keywords": [
-          "test",
-          "document"
-          ]}
-         }
+        {"name": "ext:companies", "extractions": {"keywords_file": "Fortune500.txt"}}
       ]
     },
     {
