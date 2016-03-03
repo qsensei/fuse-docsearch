@@ -2,6 +2,7 @@
     "components": [
         {"name": "location", "component": "my:location", "type": "transformer"},
         {"name": "date", "component": "qc.index.transform:ISODate", "type": "transformer"}
+        {"name": "file_extension", "component": "my:file_extension", "type": "transformer"}
     ],
     "defaults": {
         "results_sorting": [{"index": "modified", "direction": "desc"}],
@@ -11,6 +12,7 @@
     "indexes": [
         {"name": "tx", "type": "text", "label": "Full Text"},
         {"name": "mimetype", "label": "File Type"},
+        {"name": "extension", "label": "File Extension"},
         {"name": "created"},
         {"name": "modified"},
         {"name": "path"},
@@ -20,6 +22,7 @@
     "sources": [
         {"index": "tx", "fuse:type": "document", "attribute": "content"},
         {"index": "mimetype", "fuse:type": "document", "attribute": "mimetype"},
+        {"index": "extension", "fuse:type": "document", "attribute": "location", "transformers": ["file_extension"]},
         {"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]},
         {"index": "modified", "fuse:type": "document", "attribute": "date_modified", "transformers": ["date"]},
         {"index": "path", "fuse:type": "document", "attribute": "location", "transformers": ["location"]},
