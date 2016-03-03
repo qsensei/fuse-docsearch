@@ -10,7 +10,7 @@
   },
   "indexes": [
     {"name": "tx", "type": "text", "label": "Full Text"},
-    {"name": "filename"},
+    {"name": "mimetype", "label": "File Type"},
     {"name": "keyword"},
     {"name": "created"},
     {"name": "modified"},
@@ -19,6 +19,7 @@
   ],
   "sources": [
 	{"index": "tx", "fuse:type": "document", "attribute": "content"},
+        {"index": "mimetype", "fuse:type": "document", "attribute": "mimetype"},
         {"index": "keyword", "fuse:type": "document", "attribute": "keywords"},
 	{"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]},
 	{"index": "modified", "fuse:type": "document", "attribute": "date_modified", "transformers": ["date"]},
