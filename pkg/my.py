@@ -1,3 +1,4 @@
+import math
 import os
 
 
@@ -14,3 +15,11 @@ def file_extension(terms):
         base, ext = os.path.splitext(term)
         if ext and len(ext) > 1:
             yield ext[1:]
+
+
+def to_kilobyte(terms):
+    for term in terms:
+        try:
+            yield '%dk' % math.ceil(float(term) / 1024)
+        except ValueError:
+            pass

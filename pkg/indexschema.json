@@ -1,8 +1,9 @@
 {
     "components": [
         {"name": "location", "component": "my:location", "type": "transformer"},
-        {"name": "date", "component": "qc.index.transform:ISODate", "type": "transformer"}
-        {"name": "file_extension", "component": "my:file_extension", "type": "transformer"}
+        {"name": "date", "component": "qc.index.transform:ISODate", "type": "transformer"},
+        {"name": "file_extension", "component": "my:file_extension", "type": "transformer"},
+        {"name": "kilobyte", "component": "my:to_kilobyte", "type": "transformer"}
     ],
     "defaults": {
         "results_sorting": [{"index": "modified", "direction": "desc"}],
@@ -26,7 +27,7 @@
         {"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]},
         {"index": "modified", "fuse:type": "document", "attribute": "date_modified", "transformers": ["date"]},
         {"index": "path", "fuse:type": "document", "attribute": "location", "transformers": ["location"]},
-        {"index": "size", "fuse:type": "document", "attribute": "filesize"},
+        {"index": "size", "fuse:type": "document", "attribute": "filesize", "transformers": ["kilobyte"]},
         {"index": "company", "fuse:type": "document", "attribute": "ext:companies"}
     ]
 }
