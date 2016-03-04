@@ -3,7 +3,7 @@
         {"name": "location", "component": "my:location", "type": "transformer"},
         {"name": "date", "component": "qc.index.transform:ISODate", "type": "transformer"},
         {"name": "file_extension", "component": "my:file_extension", "type": "transformer"},
-        {"name": "upper", "component": "qc.index.transform.UpperCase", "type": "transformer"},
+        {"name": "upper", "component": "qc.index.transform:UpperCase", "type": "transformer"},
         {"name": "kilobyte", "component": "my:to_kilobyte", "type": "transformer"}
     ],
     "defaults": {
