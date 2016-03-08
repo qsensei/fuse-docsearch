@@ -5,7 +5,7 @@ router:
     - fuse
     - docservices
   ports:
-    - "80:80"
+    - "$PORT:80"
   volumes:
     - ./nginx.d:/etc/nginx/conf.d:ro
 docservices:
