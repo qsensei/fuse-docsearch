@@ -30,6 +30,8 @@ fuse:
   volumes:
     # the docsearch pkg with the schema
     - ./pkg:/fuse/ext/pkg
+  volumes_from:
+    - data
   environment:
     # enable services interface in managment frontend
     FUSE_OPTS: docsearch
@@ -37,3 +39,6 @@ fileserver:
   image: nginx:1.9.11
   volumes:
     - $DOCS_DIR:/usr/share/nginx/html:ro
+data:
+  image: docker.qsensei.com/dev/fuse-free:latest
+  command: echo "Fuse data-container"
