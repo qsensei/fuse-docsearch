@@ -23,6 +23,7 @@
     ],
     "sources": [
         {"index": "tx", "fuse:type": "document", "attribute": "content"},
+        {"index": "tx", "fuse:type": "document", "attribute": "name"},
         {"index": "mimetype", "fuse:type": "document", "attribute": "mimetype"},
         {"index": "extension", "fuse:type": "document", "attribute": "location", "transformers": ["file_extension", "upper"]},
         {"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]},
