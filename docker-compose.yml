@@ -5,7 +5,7 @@ router:
     - fuse
     - docservices
   ports:
-    - "$PORT:80"
+    - "$DOCSEARCH_PORT:80"
   volumes:
     - ./nginx.d:/etc/nginx/conf.d:ro
 docservices:
@@ -14,7 +14,7 @@ docservices:
     - fuse
     - fileserver
   volumes:
-    - $DOCS_DIR:/docs:ro
+    - $DOCSEARCH_DIR:/docs:ro
   environment:
     APP_DOCS_EXTERNAL_URL: /static/docs
     APP_DOCS_URL: http://fileserver
@@ -38,7 +38,7 @@ fuse:
 fileserver:
   image: nginx:1.9.11
   volumes:
-    - $DOCS_DIR:/usr/share/nginx/html:ro
+    - $DOCSEARCH_DIR:/usr/share/nginx/html:ro
 data:
   image: docker.qsensei.com/dev/fuse-free:latest
   command: echo "Fuse data-container"

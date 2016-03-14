@@ -1,9 +1,17 @@
-# Fuse Document Search
+# Fuse Document-Search
+
 
 ## Basics
 
-- edit *docsearch.env*
-  * set *DOCS_DIR* to point to the directory containing the documents
-- run `./docsearch.sh up`
-- maybe edit *./pkg/contentschema.json* and *./pkg/indexschema.json*
-  * run `./docsearch.sh update_pkg`
+### setup
+- edit *env.sh*
+  * set *DOCSEARCH_DIR* to point to the directory containing the documents
+  * set *DOCSEARCH_PORT* to free port used for Fuse Document-Search
+
+### run
+- run `source ./env.sh`
+- run docker-compose commands - like `docker-compose up -d` to start docsearch
+
+### adjust schema
+- edit *./pkg/contentschema.json* and *./pkg/indexschema.json*
+- run `./update-pkg.sh` and restart docsearch with `docker-compose restart`
