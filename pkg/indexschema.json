@@ -24,6 +24,10 @@
     "sources": [
         {"index": "tx", "fuse:type": "document", "attribute": "content"},
         {"index": "tx", "fuse:type": "document", "attribute": "name"},
+        {"index": "tx", "fuse:type": "document", "attribute": "location"},
+        {"index": "tx", "fuse:type": "document", "attribute": "date_created"},
+        {"index": "tx", "fuse:type": "document", "attribute": "date_modified"},
+        {"index": "tx", "fuse:type": "document", "attribute": "ext:companies"},
         {"index": "mimetype", "fuse:type": "document", "attribute": "mimetype"},
         {"index": "extension", "fuse:type": "document", "attribute": "location", "transformers": ["file_extension", "upper"]},
         {"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]},
