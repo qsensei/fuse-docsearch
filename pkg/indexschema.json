@@ -18,7 +18,7 @@
         {"name": "created"},
         {"name": "modified"},
         {"name": "path"},
-        {"name": "size"},
+        {"name": "size", "label": "Size (kB)", "collate": "int"},
         {"name": "company"}
     ],
     "sources": [

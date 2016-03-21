@@ -20,6 +20,6 @@ def file_extension(terms):
 def to_kilobyte(terms):
     for term in terms:
         try:
-            yield '%dk' % math.ceil(float(term) / 1024)
+            yield int(math.ceil(float(term) / 1024))
         except ValueError:
             pass
