@@ -9,7 +9,7 @@ router:
   volumes:
     - ./nginx.d:/etc/nginx/conf.d:ro
 docservices:
-  image: docker.qsensei.com/dev/docservices:latest
+  image: docker.qsensei.com/docservices:latest
   links:
     - fuse
     - fileserver
@@ -24,7 +24,7 @@ docservices:
     max-size: "50m"
     max-file: "5"
 fuse:
-  image: docker.qsensei.com/dev/fuse-free:latest
+  image: docker.qsensei.com/fuse-free:latest
   # automatically setup Fuse with pkg on start - needs testing and review
   command: /fuse/bin/fusectl run -p /fuse/ext/pkg
   volumes:
@@ -40,5 +40,5 @@ fileserver:
   volumes:
     - $DOCSEARCH_DIR:/usr/share/nginx/html:ro
 data:
-  image: docker.qsensei.com/dev/fuse-free:latest
+  image: docker.qsensei.com/fuse-free:latest
   command: echo "Fuse data-container"
