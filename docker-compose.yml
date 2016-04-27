@@ -35,6 +35,7 @@ fuse:
   environment:
     # enable services interface in managment frontend
     FUSE_OPTS: docsearch
+    FUSE_AUTH: none
 fileserver:
   image: nginx:1.9.11
   volumes:
