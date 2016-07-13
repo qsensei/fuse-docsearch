@@ -13,11 +13,10 @@
     },
     "indexes": [
         {"name": "tx", "type": "text", "label": "Full Text"},
-        {"name": "mimetype", "label": "File Type"},
-        {"name": "extension", "label": "File Extension"},
+        {"name": "extension", "label": "File Type"},
         {"name": "created"},
         {"name": "modified"},
-        {"name": "path"},
+        {"name": "path", "label": "Folder"},
         {"name": "size", "label": "Size (kB)", "collate": "int"},
         {"name": "company"}
     ],
@@ -28,7 +27,6 @@
         {"index": "tx", "fuse:type": "document", "attribute": "date_created"},
         {"index": "tx", "fuse:type": "document", "attribute": "date_modified"},
         {"index": "tx", "fuse:type": "document", "attribute": "ext:companies"},
-        {"index": "mimetype", "fuse:type": "document", "attribute": "mimetype"},
         {"index": "extension", "fuse:type": "document", "attribute": "location", "transformers": ["file_extension", "upper"]},
         {"index": "created", "fuse:type": "document", "attribute": "date_created", "transformers": ["date"]},
         {"index": "modified", "fuse:type": "document", "attribute": "date_modified", "transformers": ["date"]},
